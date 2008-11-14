@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moviefiles>
+	<movie label="Select Video..." videoFile=""/>
+	<movie label="Bars and Tone" videoFile="barsandtone.flv"/>
+</moviefiles>

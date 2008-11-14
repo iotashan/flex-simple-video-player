@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" initialize="init()" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]">
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+			
+			[Bindable] private var videoXML:XMLList;
+			
+			private function init():void {
+				getVideoXML.send();
+			}
+			
+			private function loadXML(event:ResultEvent):void {
+				// put the XML into our XMLListCollection
+				var result:XML = event.result as XML;
+				videoXML = result.movie as XMLList;
+			}
+			
+			private function changeVideo():void {
+				var thisMovie:String = videoXML[videoList.selectedIndex].@videoFile;
+				
+				if (thisMovie.length > 0) {
+					// if videoFile has a length, play the video at that URL
+					mainVideo.source = thisMovie;
+				} else {
+					// blank out the screen, it's not a video
+					mainVideo.stop();
+					mainVideo.
+					mainVideo.source = "";
+				}
+			}
+		]]>
+	</mx:Script>
+	<!---
+		getVideoXML loads an XML file that contains a list of videos. Hard-coded to "simpleVideo.xml"
+	-->
+	<mx:HTTPService id="getVideoXML" url="simpleVideo.xml" resultFormat="e4x" result="loadXML(event)"/>
+
+	<mx:VBox horizontalAlign="center">
+		<mx:ComboBox id="videoList" dataProvider="{videoXML}" labelField="@label" change="changeVideo()"/>
+		<mx:VideoDisplay id="mainVideo" ready="mainVideo.play()" width="400" height="300"/>
+	</mx:VBox>
+</mx:Application>
