@@ -2,4 +2,5 @@
 <moviefiles>
 	<movie label="Select Video..." videoFile=""/>
 	<movie label="Bars and Tone" videoFile="barsandtone.flv"/>
+	<movie label="Funny Cats" videoFile="http://www.thefunmouse.com/video/flvs/funny_cats.flv"/>
 </moviefiles>

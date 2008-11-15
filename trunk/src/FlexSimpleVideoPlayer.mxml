@@ -16,6 +16,14 @@
 				videoXML = result.movie as XMLList;
 			}
 			
+			private function handleProgress(event:ProgressEvent):void {
+				
+			}
+			
+			private function handleComplete(event:ProgressEvent):void {
+				
+			}
+			
 			private function changeVideo():void {
 				var thisMovie:String = videoXML[videoList.selectedIndex].@videoFile;
 				
@@ -25,7 +33,6 @@
 				} else {
 					// blank out the screen, it's not a video
 					mainVideo.stop();
-					mainVideo.
 					mainVideo.source = "";
 				}
 			}
@@ -38,6 +45,7 @@
 
 	<mx:VBox horizontalAlign="center">
 		<mx:ComboBox id="videoList" dataProvider="{videoXML}" labelField="@label" change="changeVideo()"/>
-		<mx:VideoDisplay id="mainVideo" ready="mainVideo.play()" width="400" height="300"/>
+		<mx:VideoDisplay id="mainVideo" bufferTime="5" progress="handleProgress(event)" width="400" height="300"/>
+		<mx:ProgressBar id="loadProgress" visible="false" includeInLayout="false" label="" mode="event" barColor="#00ff00" minimum="0" maximum="100" y="336" height="20" source="{mainVideo}" trackHeight="10" trackColors="[#FF0000, #e6eeee]" left="10" right="10"/>
 	</mx:VBox>
 </mx:Application>
